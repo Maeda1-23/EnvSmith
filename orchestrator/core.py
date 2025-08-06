@@ -1,5 +1,3 @@
-# orchestrator/core.py
-
 from worker_client import exec_in_worker
 
 def main():

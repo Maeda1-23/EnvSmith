@@ -1,3 +1,5 @@
+docker
 langchain
-google-generativeai
 openai
+google-generativeai
+# 必要ならrich, pyyamlなども

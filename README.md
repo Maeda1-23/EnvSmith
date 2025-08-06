@@ -1,24 +1,25 @@
-# EnvSmith
+# EnvSmith (B案: Orchestrator + Workerサンドボックス)
 
-## 1. Dockerイメージのビルド
-
-```sh
-docker build -t envsmith .
+## 1. Worker用イメージをビルド
+```
+cd worker
+docker build -t envsmith-worker .
 ```
 
----
+## 2. Orchestrator側Python依存をインストール
+```
+pip install -r requirements.txt
+```
+## 3. Orchestratorを起動
+```
+cd ..
+python orchestrator/main.py
+```
 
-## 2. Dockerコンテナの起動
-▶️ Windows PowerShellの場合
-```powershell
-docker run -it --rm -v ${PWD}:/workspace envsmith
+## 4. Workerコンテナの起動
 ```
-▶️ Windows コマンドプロンプト（cmd.exe）の場合
-```cmd
-docker run -it --rm -v %cd%:/workspace envsmith
+docker run -d --name envsmith_worker envsmith-worker
 ```
-▶️ WSL / Linux / Macの場合
-```bash
-docker run -it --rm -v $(pwd):/workspace envsmith
-```
+
+**entrypoint.shが動き続けるだけの“常駐Worker”**が立ち上がる．
 
